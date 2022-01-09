@@ -14,7 +14,7 @@ def remove_watermark(in_file, out_file, watermark=''):
   
   for page in range(source.getNumPages()):
     page = source.getPage(page)
-    content_object = page["\Contents"].getObject()
+    content_object = page["/Contents"].getObject()
     content = ContentStream(content_object, source)
     
     for operands, operator in content.operations:
@@ -23,7 +23,7 @@ def remove_watermark(in_file, out_file, watermark=''):
         # like comparing with the passed watermark and only removing then
         operands[0] = TextStringObject(' ')
         
-    page.__setitem__(NameObject('\Contents'), content)
+    page.__setitem__(NameObject('/Contents'), content)
     output.addPage(page)
   
   output_stream = open(out_file, 'wb')
